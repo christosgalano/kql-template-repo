@@ -16,15 +16,15 @@ jobs:
       id-token: write
       contents: read
     env:
-      folder: ${{ github.workspace }}/library/${{ github.event.inputs.folder }}
+      folder: library/${{ github.event.inputs.folder }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Validate folder existance
         run: |
-          if [ ! -d ${{ github.event.inputs.folder }} ]; then
-            echo "Folder ${{ github.event.inputs.folder }} does not exist"
+          if [ ! -d ${{ env.folder }} ]; then
+            echo "Folder ${{ env.folder }} does not exist"
             exit 1
           fi
 
