@@ -10,6 +10,7 @@ on:
 
 jobs:
   execute:
+    name: Execute queries in ${{ github.event.inputs.folder }}
     runs-on: ubuntu-latest
     permissions:
       id-token: write
