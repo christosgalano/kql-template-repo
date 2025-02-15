@@ -4,7 +4,7 @@ on:
   workflow_dispatch: 
     inputs:
       folder:
-        description: 'Query folder to execute (relative to library folder)'
+        description: 'Query folder to execute (relative to library/)'
         required: true
         type: string
 
