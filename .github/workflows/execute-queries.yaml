@@ -1,0 +1,50 @@
+name: execute-queries
+
+on:
+  workflow_call:
+    inputs:
+      folder:
+        description: 'Query folder to execute (relative to library folder)'
+        required: true
+        type: string
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    env:
+      folder: ${{ github.workspace }}/library/${{ github.event.inputs.folder }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate folder existance
+        run: |
+          if [ ! -d ${{ github.event.inputs.folder }} ]; then
+            echo "Folder ${{ github.event.inputs.folder }} does not exist"
+            exit 1
+          fi
+
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Execute queries
+        working-directory: ${{ env.folder }}
+        run: |
+          echo "Executing queries in library/${{ github.event.inputs.folder }}"
+          for query in ${{ env.folder }}/*.kql; do
+            echo "Executing $query"
+            az monitor log-analytics query -w ${{ secrets.WORKSPACE_ID }} --analytics-query @$query > $query.json
+            if [ $? -ne 0 ]; then
+              echo "Failed to execute $query"
+              exit 1
+            fi
+            no_results=$(jq 'length' $query.json)
+            echo "Number of results for $query: $no_results"
+          done
