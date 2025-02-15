@@ -38,6 +38,7 @@ jobs:
       - name: Execute queries
         working-directory: ${{ env.folder }}
         run: |
+          az config set extension.dynamic_install_allow_preview=true &> /dev/null
           echo "Executing queries in library/${{ github.event.inputs.folder }}"
           for query in *.kql; do
             echo "Executing $query"
