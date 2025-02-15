@@ -1,7 +1,7 @@
 name: execute-queries
 
 on:
-  workflow_call:
+  workflow_dispatch: 
     inputs:
       folder:
         description: 'Query folder to execute (relative to library folder)'
