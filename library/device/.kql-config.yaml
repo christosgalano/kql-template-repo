@@ -1,0 +1,22 @@
+# version is optional, defaults to 1.0
+version: '1.0'
+
+# Files section - if omitted, all .kql files are included
+files:
+  # Example to include only specific files
+  include:
+    - 'process-events.kql'
+
+  # Example to exclude specific files (uncomment to use)
+  # exclude:
+  #   - "deprecated-query.kql"
+
+# Output configuration
+output:
+  # Format of output (currently only console is supported)
+  format: console
+
+  # JQ query to run on the returned JSON
+  # length - returns the number of results
+  # . - returns all results
+  query: 'length'

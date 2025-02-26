@@ -1,7 +1,7 @@
 name: execute-queries
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
     inputs:
       folder:
         description: 'Query folder to execute (relative to library)'
@@ -21,7 +21,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Validate folder existance
+      - name: Validate folder existence
         run: |
           if [ ! -d ${{ env.folder }} ]; then
             echo "Folder ${{ env.folder }} does not exist"
@@ -41,17 +41,12 @@ jobs:
           az extension add --name log-analytics
           az extension update --name log-analytics
 
-      - name: Execute queries
-        working-directory: ${{ env.folder }}
+      - name: Install Python dependencies
         run: |
-          echo "Executing queries in library/${{ github.event.inputs.folder }}..."
-          for query in *.kql; do
-            echo "Executing $query"
-            az monitor log-analytics query -w ${{ secrets.WORKSPACE_ID }} --analytics-query @$query > $query.json
-            if [ $? -ne 0 ]; then
-              echo "Failed to execute $query"
-              exit 1
-            fi
-            no_results=$(jq 'length' $query.json)
-            echo "Number of results for $query: $no_results"
-          done
+          python -m pip install --upgrade pip
+          pip install -r .github/scripts/requirements.txt
+
+      - name: Execute queries
+        run: |
+          .github/scripts/execute_queries.py ${{ env.folder }} \
+            -w ${{ secrets.WORKSPACE_ID }}

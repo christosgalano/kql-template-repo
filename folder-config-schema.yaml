@@ -1,0 +1,38 @@
+# Folder configuration schema.
+# This file controls which KQL files are executed and how results are processed under the specified folder.
+
+# Schema version
+version: '1.0'
+
+# Files selection (only one of include/exclude can be specified).
+# If neither is specified, all KQL files in the folder will be included.
+files:
+  # Either include or exclude can be specified, not both
+  include:
+    # List of files relative to folder to include
+    # Example: ["network-events.kql", "process-events.kql"]
+    # If specified, only these files will be executed
+  exclude:
+    # List of files relative to folder to exclude
+    # Example: ["deprecated-query.kql"]
+    # If specified, all files except these will be executed
+
+# Output configuration
+output:
+  # Format of output (default: console)
+  format: console
+
+  # JQ query to run on the returned JSON
+  # This allows filtering or transforming the results
+  # Default is "." which returns all results
+  query: '.'
+
+# Validation
+oneOf:
+  - files.include
+  - files.exclude
+  - {} # Empty object means include all (default behavior)
+
+# Error if both include and exclude are specified
+not:
+  required: [files.include, files.exclude]

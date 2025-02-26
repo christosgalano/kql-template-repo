@@ -11,7 +11,7 @@ folder config:
   - print
   - github summary
   - email (recipient, from github user or github bot)
-  
+
   - github issue
   - slack:
   - ...
