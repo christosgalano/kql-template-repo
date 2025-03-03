@@ -8,4 +8,6 @@ In order to execute KQL queries to your log analytics workspace, you have to reg
 3. Then, choose a name and click Register.
 > [!TIP]
 > Choose a comfortable, yet recognisable name for your application.
-4. 
+4. From the overview page of the app you created, note the Application ID (client) and Directory ID (tenant).
+5. Under Manage, choose Clients & secrets.
+6. Choose New client secret. Add something relevant to the description (for example, Github Actions) and then the expiry time of your choice. Click add, copy both Value and Secret ID as you will need them later on.
