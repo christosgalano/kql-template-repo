@@ -22,7 +22,9 @@ In order to execute KQL queries to your log analytics workspace, you have to reg
 6. Right to Members, clik Select members. Search for the application name you created in Step 1 and click Select.
 7. Then click  Review + assign.
 
-![image](https://raw.githubusercontent.com/christosgalano/kql-template-repo/refs/heads/main/docs/images/kql-azure-guide-01.jpg)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/christosgalano/kql-template-repo/refs/heads/main/docs/images/kql-azure-guide-01.jpg">
+</p>
 
 ## Step 3, Assign federated credentials for Github
 > [!IMPORTANT]
@@ -30,4 +32,6 @@ In order to execute KQL queries to your log analytics workspace, you have to reg
 1. Under Manage, Clients & secrets choose the Federated credentials Tab.
 2. Choose Add credentials and from the Select scenario drop down menu, choose GitHub Actions deploying Azure resources.
 
-![image](https://raw.githubusercontent.com/christosgalano/kql-template-repo/refs/heads/main/docs/images/kql-azure-guide-02.jpg)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/christosgalano/kql-template-repo/refs/heads/main/docs/images/kql-azure-guide-02.jpg">
+</p>
