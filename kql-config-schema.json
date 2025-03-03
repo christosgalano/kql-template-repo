@@ -1,0 +1,110 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "KQL Query Execution Configuration",
+  "description": "Defines execution rules for KQL queries, including file selection and output settings.",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Configuration schema version."
+    },
+    "files": {
+      "type": "object",
+      "description": "Specifies which KQL files to include or exclude from execution.",
+      "properties": {
+        "include": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of KQL files to execute."
+        },
+        "exclude": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of KQL files to ignore."
+        }
+      },
+      "not": {
+        "required": [
+          "include",
+          "exclude"
+        ]
+      }
+    },
+    "output": {
+      "type": "object",
+      "description": "Defines how and where query results are output.",
+      "properties": {
+        "formats": {
+          "type": "array",
+          "description": "List of output formats for query execution.",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "console",
+                  "file"
+                ],
+                "description": "Output type. 'console' prints results, 'file' stores them in structured files."
+              },
+              "query": {
+                "type": "string",
+                "description": "JQ query filter to apply to results."
+              },
+              "path": {
+                "type": "string",
+                "description": "For 'file', specifies the base folder for results. Results are stored under '{path}/{query-folder}/{query}.json'. Ignored for 'console'."
+              },
+              "filename_template": {
+                "type": "string",
+                "description": "Template for file naming. Supports '{query-folder}' and '{query}'."
+              },
+              "compression": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "gzip",
+                  "zip"
+                ],
+                "description": "Defines compression type for file output."
+              }
+            },
+            "required": [
+              "type"
+            ],
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "type": {
+                      "const": "console"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "path": {
+                      "const": "stdout"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "formats"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

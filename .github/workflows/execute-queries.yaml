@@ -7,6 +7,18 @@ on:
         description: 'Query folder to execute (relative to library)'
         required: true
         type: string
+      log_level:
+        description: 'Log level for the execution'
+        required: false
+        type: choice
+        default: 'INFO'
+        options:
+          - 'DEBUG'
+          - 'INFO'
+          - 'WARNING'
+          - 'ERROR'
+          - 'CRITICAL'
+
 
 jobs:
   execute:
@@ -48,5 +60,14 @@ jobs:
 
       - name: Execute queries
         run: |
-          .github/scripts/execute_queries.py ${{ env.folder }} \
-            -w ${{ secrets.WORKSPACE_ID }}
+          .github/scripts/execute_queries.py \
+            --folder ${{ env.folder }} \
+            --workspace-id ${{ secrets.WORKSPACE_ID }} \
+            --schema kql-config-schema.json \
+            --log-level ${{ github.event.inputs.log_level }}
+
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: query-results
+          path: query-results

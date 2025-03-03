@@ -1,14 +1,11 @@
 version: '1.0'
 
-files:
-  include:
-    - 'process-events.kql'
-
 output:
   formats:
     - type: console
       query: '.'
-
     - type: file
       query: '.'
+      path: query-results # relative to the current file
       filename_template: '{query-folder}/{query}.json'
+      compression: none
