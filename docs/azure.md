@@ -37,9 +37,9 @@ In order to execute KQL queries to your log analytics workspace, you have to reg
 </p>
 
 3. Add all the required information,
- - Organization (your GitHub organization name)
- - Repository (the name of your GitHub repository that will be assigned to materialize Actions)
- - Entity type (choose Branch)
- - Based on selection (type main)
+  - Organization (your GitHub organization name)
+  - Repository (the name of your GitHub repository that will be assigned to materialize Actions)
+  - Entity type (choose Branch)
+  - Based on selection (type main)
 4. Under **Credential details** choose a Name that would easily help identify these Federated credentials and add a description for your documentation.
 5. Make sure all infromation is correct and click Add.
