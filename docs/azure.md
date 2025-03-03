@@ -21,3 +21,6 @@ In order to execute KQL queries to your log analytics workspace, you have to reg
 5. On the Members tab, select Assign access to  User, group, or service principal.
 6. Right to Members, clik Select members. Search for the application name you created in Step 1 and click Select.
 7. Then click  Review + assign.
+
+![image](https://github.com/user-attachments/assets/c0474aad-fc57-4481-beb1-296a9f7c06d1)
+
