@@ -11,8 +11,6 @@ A comprehensive template for managing, executing, and organizing Kusto Query Lan
   - [2. Azure Setup](#2-azure-setup)
   - [3. GitHub Configuration](#3-github-configuration)
   - [4. Execute Queries](#4-execute-queries)
-    - [Via GitHub Actions](#via-github-actions)
-    - [Via Python Script](#via-python-script)
 - [Contributing](#contributing)
 - [License](#license)
 
