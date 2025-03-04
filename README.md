@@ -72,10 +72,11 @@ pip install -r .github/scripts/kql_query_executor/requirements.txt
 # Login to Azure
 az login
 
-# Run queries
+# Make sure you are in the repository root
 python .github/scripts/kql_query_executor/main.py \
   -w <workspace-id> \
-  -f library/<query-folder>
+  -f library/<query-folder> \
+  -s kql-config-schema.json
 ```
 
 ## Contributing
