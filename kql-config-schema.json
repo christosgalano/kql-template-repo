@@ -1,109 +1,82 @@
 {
+  "$id": "https://raw.githubusercontent.com/christosgalano/kql-template-repo/main/kql-config-schema.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "title": "KQL Query Execution Configuration",
-  "description": "Defines execution rules for KQL queries, including file selection and output settings.",
+  "description": "Defines execution rules for KQL queries, including output settings.",
   "properties": {
     "version": {
       "type": "string",
       "description": "Configuration schema version."
     },
-    "files": {
-      "type": "object",
-      "description": "Specifies which KQL files to include or exclude from execution.",
-      "properties": {
-        "include": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "List of KQL files to execute."
-        },
-        "exclude": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "List of KQL files to ignore."
-        }
+    "queries": {
+      "type": "array",
+      "description": "List of query configurations. By default, all KQL files will be executed; specific configurations override defaults.",
+      "items": {
+        "$ref": "#/definitions/queryConfig"
       },
-      "not": {
-        "required": [
-          "include",
-          "exclude"
-        ]
-      }
-    },
-    "output": {
+      "uniqueItems": true
+    }
+  },
+  "definitions": {
+    "queryConfig": {
       "type": "object",
-      "description": "Defines how and where query results are output.",
+      "required": [
+        "file"
+      ],
       "properties": {
-        "formats": {
+        "file": {
+          "type": "string",
+          "description": "Path to the .kql file containing the query. Relative to the configuration file."
+        },
+        "output": {
           "type": "array",
-          "description": "List of output formats for query execution.",
-          "minItems": 1,
+          "description": "Output formats for this query.",
           "items": {
-            "type": "object",
-            "properties": {
-              "type": {
-                "type": "string",
-                "enum": [
-                  "console",
-                  "file"
-                ],
-                "description": "Output type. 'console' prints results, 'file' stores them in structured files."
-              },
-              "query": {
-                "type": "string",
-                "description": "JQ query filter to apply to results."
-              },
-              "path": {
-                "type": "string",
-                "description": "For 'file', specifies the base folder for results. Results are stored under '{path}/{query-folder}/{query}.json'. Ignored for 'console'."
-              },
-              "filename_template": {
-                "type": "string",
-                "description": "Template for file naming. Supports '{query-folder}' and '{query}'."
-              },
-              "compression": {
-                "type": "string",
-                "enum": [
-                  "none",
-                  "gzip",
-                  "zip"
-                ],
-                "description": "Defines compression type for file output."
-              }
-            },
-            "required": [
-              "type"
-            ],
-            "allOf": [
-              {
-                "if": {
-                  "properties": {
-                    "type": {
-                      "const": "console"
-                    }
-                  }
-                },
-                "then": {
-                  "properties": {
-                    "path": {
-                      "const": "stdout"
-                    }
-                  }
-                }
-              }
-            ]
+            "$ref": "#/definitions/outputFormat"
           },
           "uniqueItems": true
         }
       },
-      "required": [
-        "formats"
-      ],
       "additionalProperties": false
+    },
+    "outputFormat": {
+      "type": "object",
+      "properties": {
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "jsonc",
+            "none",
+            "table",
+            "tsv",
+            "yaml",
+            "yamlc"
+          ],
+          "description": "Output format."
+        },
+        "query": {
+          "type": "string",
+          "description": "JMESPath query string to apply. See http://jmespath.org/ for more information and examples."
+        },
+        "file": {
+          "type": "string",
+          "description": "If specified output is written to this file. Directories are created if they do not exist. Relative to the configuration file."
+        },
+        "compression": {
+          "type": "string",
+          "enum": [
+            "gzip",
+            "zip"
+          ],
+          "description": "Compression format to use. If not specified, no compression is used."
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "format"
+      ]
     }
   },
   "additionalProperties": false

@@ -7,18 +7,6 @@ on:
         description: 'Query folder to execute (relative to library)'
         required: true
         type: string
-      log_level:
-        description: 'Log level for the execution'
-        required: false
-        type: choice
-        default: 'INFO'
-        options:
-          - 'DEBUG'
-          - 'INFO'
-          - 'WARNING'
-          - 'ERROR'
-          - 'CRITICAL'
-
 
 jobs:
   execute:
@@ -53,21 +41,26 @@ jobs:
           az extension add --name log-analytics
           az extension update --name log-analytics
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r .github/scripts/requirements.txt
+          pip install -r .github/scripts/kql_query_executor/requirements.txt
 
       - name: Execute queries
         run: |
-          .github/scripts/execute_queries.py \
+          python .github/scripts/kql_query_executor/main.py \
             --folder ${{ env.folder }} \
             --workspace-id ${{ secrets.WORKSPACE_ID }} \
-            --schema kql-config-schema.json \
-            --log-level ${{ github.event.inputs.log_level }}
+            --schema kql-config-schema.json
 
       - name: Upload results
         uses: actions/upload-artifact@v4
         with:
-          name: query-results
+          name: Query-Results
           path: query-results

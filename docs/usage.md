@@ -1,9 +1,13 @@
 # Usage Guide
 
+This guide explains how to use the KQL Template Repository for executing KQL queries and handling their outputs.
+
 ## Table of Contents
 
 - [Execution with GitHub Actions](#execution-with-github-actions)
 - [Execution with Python Script](#execution-with-python-script)
+- [Understanding Output Configuration](#understanding-output-configuration)
+- [Common Usage Scenarios](#common-usage-scenarios)
 
 > [!TIP]
 > Make sure you have read the dedicated guidelines:
@@ -16,108 +20,185 @@
 
 ## Execution with GitHub Actions
 
-When using **GitHub Actions**, it is recommended to keep the output file paths relative to the repository root and within `query-results/` if you want them to be uploaded as an artifact in the action workflow.
+When using GitHub Actions, the workflow will automatically execute all KQL queries in the specified folder.
 
 > [!IMPORTANT]
-> Do not modify `path`  of each output format in the `.kql-config.yaml` file.
-> You can modify the `filename_template` to store the results in a structured way.
+> When using GitHub Actions, keep output file paths within `query-results/` directory to ensure they are properly uploaded as workflow artifacts.
 
 ### Recommended `.kql-config.yaml` for GitHub Actions
 
 ```yaml
 version: '1.0'
 
-files:
-  include:
-    - 'process-events.kql'
+queries:
+  - file: 'process-events.kql'
+    output:
+      - format: jsonc  # Display in console with colors
 
-output:
-  formats:
-    - type: console
-      query: '.' # show all results in the console
+      - format: json   # Store filtered results
+        query: '[].{Time: TimeGenerated, Source: Source}'
+        file: 'query-results/process-events/complete.json' # Folders are created automatically if they do not exist
 
-    - type: file
-      query: '.' # store all results under `all/` folder
-      filename_template: '{query-folder}/all/{query}.json'
-
-    - type: file
-      query: 'map({Time: .TimeGenerated, Source: .Source})' # example JQ transformation
-      filename_template: '{query-folder}/time-source/{query}.json'
-
-    # More output formats can be added here
-    ...
+      - format: json   # Store full results
+        file: 'query-results/process-events/filtered.json' # Folders are created automatically if they do not exist
+        compression: gzip
 ```
 
 📌 **Why this setup?**
 
-- Keeps multiple queries structured.
-- Ensures results are stored under `query-results/`, making them accessible for GitHub Actions' artifact upload.
-- Allows different JSON transformations for each query.
-
-If you do not need to have multiple output formats or customize with jq transformations, you can use the default `.kql-config.yaml` file.
-
-```yaml
-version: '1.0'
-
-output:
-  formats:
-    - type: console
-      query: '.'
-    - type: file
-      query: '.'
-      path: query-results
-      filename_template: '{query-folder}/{query}.json'
-      compression: none
-```
-
-This is loaded automatically and will result in the following:
-
-- All results are printed to the console.
-- All results are stored under `query-results/${{ github.event.inputs.folder }}` with the query name as the filename.
+- Ensures results are displayed in the workflow logs
+- Stores complete results as artifacts
+- Allows filtered results with specific fields
+- Uses compression for larger result sets
+- Follows the repository's path structure for artifact uploads
 
 ---
 
 ## Execution with Python Script
 
-If you are running queries locally via the Python script, follow these steps.
+To run queries locally using the Python script, follow these steps:
 
 ### 1. Set Up a Virtual Environment
-
-It is recommended to use a Python virtual environment (`venv`) to manage dependencies.
 
 ```sh
 python3 -m venv venv
 source venv/bin/activate  # On Windows use: venv\Scripts\activate
-pip install -r .github/scripts/requirements.txt
+pip install -r .github/scripts/kql_query_executor/requirements.txt
 ```
 
-### 2. Run the Query Execution Script
+### 2. Login to Azure
 
 ```sh
-# Login to Azure
 az login
-
-# Run the script
-python .github/scripts/execute_queries.py -w <workspace-id> -f library/<query-folder> -s kql-config-schema.json
 ```
 
-📌 **Flags Explained:**
-
-- `-w <workspace-id>`: Specifies the Azure Log Analytics workspace ID.
-- `-f library/<query-folder>`: Specifies the folder containing the queries.
-- `-s kql-config-schema.json`: Uses the schema file for validation.
-
-Each `query-folder` can contain a dedicated `.kql-config.yaml` file to configure the output format. For more information, see the [Configuration Guide](/docs/configuration.md).
-
-### 3. View Results
-
-If `file` output is configured, results will be stored under `query-results/{query-folder}/{query}.json`.
-
-To check the results:
+### 3. Run the Query Execution Script
 
 ```sh
-ls -R query-results/
-cat query-results/device/all/process-events.json
+# Make sure you are in the repository root
+python .github/scripts/kql_query_executor/main.py \
+  -w <workspace-id> \
+  -f library/<query-folder> \
+  -s kql-config-schema.json
 ```
 
-This setup ensures that results are structured and ready for further processing.
+📌 **Command-line Options:**
+
+- `-w, --workspace-id` (required): Azure Log Analytics workspace ID
+- `-f, --folder` (required): Folder containing KQL queries
+- `-c, --config`: Path to specific config file (optional, default: auto-detect)
+- `-s, --schema`: Path to schema file (optional, default: repo root)
+- `-l, --log-level`: Logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+
+### 4. View Results
+
+Results will be saved according to your configuration:
+
+```sh
+# List all results
+ls -la query-results/
+
+# View a specific result file
+cat query-results/security-events/high-severity.json
+```
+
+![Python Script - Console Output](/assets/images/examples/python-console-light.png)
+
+<p align="center">
+  <img src="../assets/images/examples/python-file-light.png" alt="Python Script - File Output">
+</p>
+
+---
+
+## Understanding Output Configuration
+
+The repository supports various output formats and options:
+
+### Output Formats
+
+- `json`: Standard JSON output
+- `jsonc`: Colorized JSON (useful for console viewing)
+- `table`: Formatted ASCII table
+- `tsv`: Tab-separated values
+- `yaml`: YAML format
+- `yamlc`: Colorized YAML
+- `none`: Skip output (useful for testing or boolean results with `echo $?`)
+
+### Output Destinations
+
+- **Console output**: When no `file` is specified
+- **File output**: When `file` is specified (directories are created automatically, must *not* contain whitespace)
+
+### Output Transformations
+
+- **JMESPath queries**: Filter and transform results using `query` parameter
+- **Compression**: Apply `gzip` or `zip` compression to output files
+
+> ![!IMPORTANT]
+> If `queries` is specified in the configuration file, only the queries listed will be executed.
+
+---
+
+## Common Usage Scenarios
+
+### 1. Basic Console Output
+
+```yaml
+version: '1.0'
+
+queries:
+  - file: 'device.kql'
+    output:
+      - format: jsonc
+```
+
+This displays the query results in the console with syntax highlighting.
+
+### 2. File Output with Filtering
+
+```yaml
+version: '1.0'
+
+queries:
+  - file: 'security-events.kql'
+    output:
+      - format: json
+        file: 'results/critical-events.json'
+        query: 'Events[?Severity == `Critical`]'
+```
+
+This saves only the critical events to a JSON file.
+
+### 3. Multiple Output Formats
+
+```yaml
+version: '1.0'
+
+queries:
+  - file: 'network/traffic.kql'
+    output:
+      - format: table  # Human-readable table in console
+
+      - format: json   # Complete data in JSON
+        file: 'results/traffic/complete.json'
+
+      - format: tsv    # Data for Excel import
+        file: 'results/traffic/for-excel.tsv'
+```
+
+This configuration displays the table in the console and saves the complete data in JSON and TSV formats.
+
+### 4. Compression for Large Results
+
+```yaml
+version: '1.0'
+
+queries:
+  - file: 'large-data.kql'
+    output:
+      - format: json
+        file: 'results/large-data.json'
+        compression: gzip
+```
+
+This compresses the output file to save space, creating `results/audit-logs.json.gz`.

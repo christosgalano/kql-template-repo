@@ -29,3 +29,22 @@ To configure the necessary secrets for the repository, set the following values:
 4. Click **Add secret**.
 
 ![Set Secrets](/assets/images/github/set-secrets.png)
+
+---
+
+## 3. Executing KQL Queries
+
+1. Go to the **Actions** tab and select the **execute-queries** workflow.
+2. Click **Run workflow**.
+3. Enter the folder containing the KQL queries relative to `library` (e.g., `device`).
+4. Click **Run workflow**.
+
+![Run Workflow](/assets/images/github/run-workflow.png)
+
+---
+
+## 4. Viewing Query Results
+
+---
+
+## 5. Downloading Artifacts

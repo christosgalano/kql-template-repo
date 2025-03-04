@@ -1,14 +1,61 @@
 version: '1.0'
 
-files:
-  include:
-    - 'process-events.kql'
+queries:
+  - file: 'process-events.kql'
+    output:
+      # Simplified console output with key process info
+      - format: table
+        query: >-
+          [].{
+            Time: TimeGenerated,
+            Device: DeviceName,
+            Account: AccountName,
+            ParentProcess: InitiatingProcessFileName,
+            CreatedProcess: FileName,
+            CommandLine: ProcessCommandLine
+          }[:5]
 
-output:
-  formats:
-    - type: console
-      query: '.'
+      # Summarized JSON output by process type
+      - format: json
+        file: query-results/process-events/by_type.json
+        query: >-
+          sort_by([].{
+            processType: ProcessType,
+            device: DeviceName,
+            user: AccountName,
+            parent: InitiatingProcessFileName,
+            created: FileName,
+            cmdline: ProcessCommandLine
+          }, &processType)
 
-    - type: file
-      query: '.'
-      filename_template: '{query-folder}/{query}.json'
+  - file: 'network-events.kql'
+    output:
+      # Simplified network connections table
+      - format: table
+        query: >-
+          reverse(sort_by([].{
+            Time: TimeGenerated,
+            Action: ActionType,
+            Endpoint: join(':', [to_string(RemoteIP), to_string(RemotePort)])
+          }, &Time))[:5]
+
+      # Basic network events JSON
+      - format: json
+        file: query-results/network-events/connections.json
+        query: >-
+          reverse(sort_by([].{
+            timestamp: TimeGenerated,
+            device: DeviceName,
+            action: ActionType,
+            protocol: Protocol,
+            remote_ip: to_string(RemoteIP),
+            remote_port: to_string(RemotePort),
+            endpoint: join(':', [to_string(RemoteIP), to_string(RemotePort)]),
+            summary: join(' ', [
+              'Device:', DeviceName,
+              'Action:', ActionType,
+              'Protocol:', Protocol,
+              'Endpoint:', join(':', [to_string(RemoteIP), to_string(RemotePort)])
+            ])
+          }, &timestamp))
+        compression: gzip

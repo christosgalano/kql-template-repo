@@ -1,2 +1,23 @@
+// Process Events Analysis
+// Analyze process creation patterns and suspicious activities
+// Timeframe: Last 24 hours
 DeviceProcessEvents
-| take 5
+| where TimeGenerated > ago(24h)
+| where InitiatingProcessFileName in~ ("cmd.exe", "powershell.exe", "pwsh.exe", "bash", "zsh")
+| project
+    TimeGenerated,
+    DeviceName,
+    AccountName,
+    InitiatingProcessFileName,    // Parent process
+    FileName,                     // Created process
+    ProcessCommandLine,           // Command line arguments
+    FolderPath,                  // Process location
+    InitiatingProcessCommandLine  // Parent command line
+| where ProcessCommandLine !has "Get-"  // Filter out common Get- commands
+    and ProcessCommandLine !has "Set-"  // Filter out common Set- commands
+| extend ProcessType = case(
+    InitiatingProcessFileName has "powershell", "PowerShell",
+    InitiatingProcessFileName has "cmd", "Command Prompt",
+    InitiatingProcessFileName in~ ("bash", "zsh"), "Shell",
+    "Other"
+)

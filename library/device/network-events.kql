@@ -1,2 +1,13 @@
+// Get the latest network events
+// Timeframe: Last 24 hours
 DeviceNetworkEvents
+| where TimeGenerated > ago(24h)
+| project
+    TimeGenerated,
+    DeviceName,
+    ActionType,
+    RemoteIP,
+    RemotePort,
+    Protocol
+| order by TimeGenerated desc
 | take 10
