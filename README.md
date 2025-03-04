@@ -7,12 +7,13 @@ A comprehensive template for managing, executing, and organizing Kusto Query Lan
 
 ## Features
 
-- Organized Query Structure: Maintain KQL queries in a logical folder hierarchy
-- Flexible Output Formats: Support for JSON, JSONC, table, TSV, YAML, and more
-- Multiple Output Destinations: Console output or file output with optional compression
-- Advanced Transformations: Filter and transform results using JMESPath queries
-- GitHub Actions Integration: Automated query execution with workflow artifacts
-- Local Execution: Run queries locally using the provided Python script
+- **Structured Query Management**: Organize queries in logical folders
+- **Flexible Output Formats**: JSON, Table, TSV, YAML, and more
+- **Multiple Output Destinations**: Console display or file output
+- **Advanced Transformations**: Filter results using JMESPath queries
+- **Compression Options**: Optimize storage with GZIP or ZIP compression
+- **Automation**: GitHub Actions workflow for scheduled query execution
+- **Local Execution**: Run queries from your development environment
 
 ## Getting Started
 

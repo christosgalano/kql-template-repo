@@ -14,23 +14,31 @@
 
 ## How Has This Been Tested?
 <!--- Please describe in detail how you tested your changes. -->
-<!--- Include details of your testing environment and the tests you ran to -->
-<!--- See how your change affects other areas of the code, etc. -->
+<!--- For KQL queries: include sample data or expected results if possible -->
+<!--- For configuration changes: explain how you verified the output format -->
 
 ## Screenshots (if appropriate)
+<!--- For query result changes, include before/after screenshots if applicable -->
 
 ## Types of changes
 <!--- What types of changes does your code introduce? Put an `x` in all the boxes that apply: -->
 - [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
+- [ ] New query (adds a new KQL query file)
+- [ ] Query modification (non-breaking changes to existing queries)
+- [ ] Configuration update (changes to .kql-config.yaml files)
+- [ ] Documentation improvement
+- [ ] Infrastructure change (GitHub Actions, script modifications)
 - [ ] Breaking change (fix or feature that would cause existing functionality to change)
 
 ## Checklist
 <!--- Go over all the following points, and put an `x` in all the boxes that apply. -->
 <!--- If you're unsure about any of these, don't hesitate to ask. -->
 - [ ] My code follows the code style of this project.
+- [ ] My KQL queries are properly documented with comments.
+- [ ] My query configurations follow the established patterns.
 - [ ] My change requires a change to the documentation.
 - [ ] I have updated the documentation accordingly.
 - [ ] I have read the [**CONTRIBUTING**](/CONTRIBUTING.md) document.
-- [ ] I have added tests to cover my changes.
+- [ ] I have tested my queries against a Log Analytics workspace.
+- [ ] I have verified my JMESPath transformations work as expected.
 - [ ] All new and existing tests passed.
