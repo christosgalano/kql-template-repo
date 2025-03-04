@@ -1,6 +1,6 @@
 # Code of Conduct
 
-We are committed to providing a friendly, safe, and welcoming environment for all contributors and participants in the bicep-docs project. By participating in this project, you agree to abide by the following code of conduct:
+We are committed to providing a friendly, safe, and welcoming environment for all contributors and participants in the KQL Template Repository project. By participating in this project, you agree to abide by the following code of conduct:
 
 ## Expected Behavior
 
@@ -24,7 +24,7 @@ The following behaviors are considered unacceptable within the project community
 
 ## Reporting and Enforcement
 
-If you encounter any violations of the code of conduct or witness any unacceptable behavior, please report it to the project maintainers by contacting @christosgalano or @cyb3rmik3. All reports will be reviewed and investigated promptly, and appropriate actions will be taken as necessary.
+If you encounter any violations of the code of conduct or witness any unacceptable behavior, please report it to the project maintainers by contacting [christosgalano](https://github.com/christosgalano) or [cyb3rmik3](https://github.com/cyb3rmik3). All reports will be reviewed and investigated promptly, and appropriate actions will be taken as necessary.
 
 ## Consequences
 
@@ -36,6 +36,6 @@ This code of conduct applies to all project-related spaces, including but not li
 
 ## Acknowledgment
 
-We appreciate your commitment to creating a positive and inclusive community. By contributing to the kql-template-repo project, you are helping us maintain a welcoming environment for everyone.
+We appreciate your commitment to creating a positive and inclusive community. By contributing to the KQL Template Repository project, you are helping us maintain a welcoming environment for everyone.
 
 Thank you for your cooperation and understanding.
