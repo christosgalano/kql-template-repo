@@ -19,7 +19,7 @@ A comprehensive template for managing, executing, and organizing Kusto Query Lan
 
 ## Features
 
-- **Structured Query Management**: Organize qu`eries in logical folders
+- **Structured Query Management**: Organize queries in logical folders
 - **Flexible Output Formats**: JSON, Table, TSV, YAML, and more
 - **Multiple Output Destinations**: Console display or file output
 - **Advanced Transformations**: Filter results using JMESPath queries
