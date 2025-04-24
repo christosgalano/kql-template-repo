@@ -26,8 +26,8 @@ assignees: christosgalano, cyb3rmik3
 
 ## Environment Information
 <!--- Include relevant details about the environment you experienced the bug in -->
-- Repository version/commit: <!-- e.g., v1.2.0 or commit hash -->
-- Operating System: <!-- e.g., Windows 10, macOS 12.3 -->
+- Repository version/branch: <!-- e.g., v1.2.0 or main -->
+- Operating System (local or GitHub Actions runner): <!-- e.g., Windows 10, macOS 12.3 -->
 - Python version: <!-- if applicable, e.g., Python 3.10.5 -->
 - Azure CLI version: <!-- if applicable, e.g., 2.40.0 -->
 - Log Analytics Workspace details: <!-- if applicable, region or tier -->
