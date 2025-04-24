@@ -45,4 +45,13 @@ To start contributing, follow these steps:
 
 If you have any questions or need further assistance, feel free to reach out to us.
 
+## Reporting Bugs & Requesting Features
+
+We use GitHub issue templates to standardize reporting and ensure faster response times.
+
+- For bugs, [follow this guide](https://github.com/christosgalano/kql-template-repo/wiki/Feedback#-bug-report-template)
+- For new ideas or enhancements, [use the feature request template](https://github.com/christosgalano/kql-template-repo/wiki/Feedback#-feature-request-template)
+
+Before submitting, please check if the issue already exists.
+
 Happy contributing!
