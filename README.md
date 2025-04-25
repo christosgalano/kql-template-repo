@@ -17,8 +17,27 @@
   `--'---'   ;   |,'     |  ,     .-./  ---`-'    \   \  /  ;   |,'        \   \ .'`--"             
              '---'        `--`---'                 `----'   '---'           `---`  
 ``` 
+**Run KQL queries at scale, using GitHub actions.**
 
-A comprehensive template for managing, executing, and organizing Kusto Query Language (KQL) queries against Azure Log Analytics workspaces. This repository provides a structured approach to query management with flexible output formats, automated execution, and comprehensive documentation.
+#### What is sKaleQL?
+
+**sKaleQL** is a comprehensive template for managing, executing, and organizing Kusto Query Language (KQL) queries against Azure Log Analytics Workspaces. This repository provides a structured approach to query management with flexible output formats, automated execution, and comprehensive documentation.
+
+#### Why should you use sKaleQL?
+
+There is really no limit to how you can use this tool, it all depends on why you’re using Log Analytics Workspaces in the first place. Whether it’s for security, monitoring, auditing, or something else entirely, if you have a set of KQL queries you want to automate, **sKaleQL** is here to help. By combining the power of KQL with GitHub Actions, you can bring automation and efficiency into your workflows effortlessly.
+
+Here are just a few examples of how sKaleQL can make a difference:
+
+- Automated Health Checks: Regularly query for service errors, performance issues, or failed logins.
+- Security and Threat Monitoring: Run scheduled KQL queries to detect anomalies, threats, or suspicious activity.
+- Compliance Validation: Ensure logs reflect adherence to security and compliance standards.
+- Reporting and Data Export: Generate and store logs or metrics as artifacts for analysis.
+- Cost and Usage Monitoring: Track ingestion rates and resource usage for optimization.
+- Incident Response Automation: Pre-build incident queries to speed up investigations.
+- Incident Retrospectives: Pull relevant logs automatically after an incident for analysis and RCA (Root Cause Analysis).
+- Business Metrics Tracking: Monitor and extract business-level KPIs (e.g., signups, payments, errors) if logged to Azure Monitor.
+- Resource Inventory Tracking: Automatically query and export lists of resources (VMs, Containers, Storage) for auditing purposes.
 
 ## Table of Contents
 
