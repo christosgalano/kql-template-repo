@@ -19,6 +19,8 @@
 ```
 ### 🚀 **Automate and run KQL queries at scale, using GitHub Actions.**
 
+![Badge](https://img.shields.io/badge/Microsoft%20Azure-4169E1)
+
 ## Table of Contents
 
 - [Introduction](#introduction)
