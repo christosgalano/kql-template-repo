@@ -22,8 +22,8 @@
 ## Table of Contents
 
 - [Introduction](#introduction)
-  - [What is sKaleQL?](#what-is-skaleql?)
-  - [Why should you use sKaleQL?](#why-should-you-use-skaleql?)
+  - [What is sKaleQL](#what-is-skaleql)
+  - [Why should you use sKaleQL](#why-should-you-use-skaleql)
 - [Features](#features)
 - [Documentation](#documentation)
 - [Getting Started](#getting-started)
@@ -39,11 +39,11 @@
 
 ## Introduction
 
-### What is sKaleQL?
+### What is sKaleQL
 
 **sKaleQL** is a comprehensive template for managing, executing, and organizing Kusto Query Language (KQL) queries against Azure Log Analytics Workspaces. This repository provides a structured approach to query management with flexible output formats, automated execution, and comprehensive documentation.
 
-### Why should you use sKaleQL?
+### Why should you use sKaleQL
 
 There is really no limit to how you can use this tool, it all depends on why you’re using Log Analytics Workspaces in the first place. Whether it’s for security, monitoring, auditing, or something else entirely, if you have a set of KQL queries you want to automate, **sKaleQL** is here to help. By combining the power of KQL with GitHub Actions, you can bring automation and efficiency into your workflows effortlessly.
 
