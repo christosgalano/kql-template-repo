@@ -1,5 +1,23 @@
 # KQL Template Repository
 
+```
+                                                                                            ,--,    
+                    ,--.                                           ,--.                  ,---.'|    
+                ,--/  /|                 ,--,                  ,--/  /|     ,----..      |   | :    
+             ,---,': / '               ,--.'|               ,---,': / '    /   /   \     :   : |    
+             :   : '/ /                |  | :               :   : '/ /    /   .     :    |   ' :    
+  .--.--.    |   '   ,                 :  : '               |   '   ,    .   /   ;.  \   ;   ; '    
+ /  /    '   '   |  /       ,--.--.    |  ' |       ,---.   '   |  /    .   ;   /  ` ;   '   | |__  
+|  :  /`./   |   ;  ;      /       \   '  | |      /     \  |   ;  ;    ;   |  ; \ ; |   |   | :.'| 
+|  :  ;_     :   '   \    .--.  .-. |  |  | :     /    /  | :   '   \   |   :  | ; | '   '   :    ; 
+ \  \    `.  |   |    '    \__\/: . .  '  : |__  .    ' / | |   |    '  .   |  ' ' ' :   |   |  ./  
+  `----.   \ '   : |.  \   ," .--.; |  |  | '.'| '   ;   /| '   : |.  \ '   ;  \; /  |   ;   : ;    
+ /  /`--'  / |   | '_\.'  /  /  ,.  |  ;  :    ; '   |  / | |   | '_\.'  \   \  ',  . \  |   ,/     
+'--'.     /  '   : |     ;  :   .'   \ |  ,   /  |   :    | '   : |       ;   :      ; | '---'      
+  `--'---'   ;   |,'     |  ,     .-./  ---`-'    \   \  /  ;   |,'        \   \ .'`--"             
+             '---'        `--`---'                 `----'   '---'           `---`                                                                                                               
+``` 
+
 A comprehensive template for managing, executing, and organizing Kusto Query Language (KQL) queries against Azure Log Analytics workspaces. This repository provides a structured approach to query management with flexible output formats, automated execution, and comprehensive documentation.
 
 ## Table of Contents
