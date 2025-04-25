@@ -16,8 +16,28 @@
 '--'.     /  '   : |     ;  :   .'   \ |  ,   /  |   :    | '   : |       ;   :      ; | '---'      
   `--'---'   ;   |,'     |  ,     .-./  ---`-'    \   \  /  ;   |,'        \   \ .'`--"             
              '---'        `--`---'                 `----'   '---'           `---`  
-``` 
-**Run KQL queries at scale, using GitHub actions.**
+```
+## 🚀 **Automate and run KQL queries at scale, using GitHub Actions.**
+
+## Table of Contents
+
+- [Introduction](#introduction)
+  - [What is sKaleQL?](#what-is-skaleql?)
+  - [Why should you use sKaleQL?](#why-should-you-use-skaleql?)
+- [Features](#features)
+- [Documentation](#documentation)
+- [Getting Started](#getting-started)
+  - [1. Use This Template](#1-use-this-template)
+  - [2. Azure Setup](#2-azure-setup)
+  - [3. GitHub Configuration](#3-github-configuration)
+  - [4. Execute Queries](#4-execute-queries)
+- [Contributing](#contributing)
+- [License](#license)
+
+> [!TIP]
+> Detailed documentation can be found in the corresponding [wiki page](https://github.com/christosgalano/kql-template-repo/wiki).
+
+## Introduction
 
 #### What is sKaleQL?
 
@@ -38,21 +58,6 @@ Here are just a few examples of how sKaleQL can make a difference:
 - Incident Retrospectives: Pull relevant logs automatically after an incident for analysis and RCA (Root Cause Analysis).
 - Business Metrics Tracking: Monitor and extract business-level KPIs (e.g., signups, payments, errors) if logged to Azure Monitor.
 - Resource Inventory Tracking: Automatically query and export lists of resources (VMs, Containers, Storage) for auditing purposes.
-
-## Table of Contents
-
-- [Features](#features)
-- [Documentation](#documentation)
-- [Getting Started](#getting-started)
-  - [1. Use This Template](#1-use-this-template)
-  - [2. Azure Setup](#2-azure-setup)
-  - [3. GitHub Configuration](#3-github-configuration)
-  - [4. Execute Queries](#4-execute-queries)
-- [Contributing](#contributing)
-- [License](#license)
-
-> [!TIP]
-> Detailed documentation can be found in the corresponding [wiki page](https://github.com/christosgalano/kql-template-repo/wiki).
 
 ## Features
 
