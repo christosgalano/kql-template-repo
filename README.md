@@ -19,11 +19,11 @@
 ```
 
 > 🚀 **Automate and run KQL queries at scale, using GitHub Actions.**
->
-> ![Badge](https://img.shields.io/badge/Microsoft%20Azure-4169E1)
-> ![Badge](https://img.shields.io/badge/Log%20Analytics%20Workspace-87CEEB)
-> ![Badge](https://img.shields.io/badge/Kusto%20Query%20Language-5C2D91)
-> ![Badge](https://img.shields.io/badge/GitHub%20Actions-000000)
+
+![Badge](https://img.shields.io/badge/Microsoft%20Azure-4169E1)
+![Badge](https://img.shields.io/badge/Log%20Analytics%20Workspace-87CEEB)
+![Badge](https://img.shields.io/badge/Kusto%20Query%20Language-5C2D91)
+![Badge](https://img.shields.io/badge/GitHub%20Actions-000000)
 
 ## Table of Contents
 
