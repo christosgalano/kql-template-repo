@@ -25,6 +25,8 @@
 
 > 🚀 **Automate and run KQL queries at scale, using GitHub Actions.**
 
+A project created and curated by [christosgalano](https://github.com/christosgalano) & [cyb3rmik3](https://github.com/cyb3rmik3).
+
 ## Table of Contents
 
 - [Introduction](#introduction)
