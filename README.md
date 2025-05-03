@@ -25,8 +25,6 @@
 
 > 🚀 **Automate and run KQL queries at scale, using GitHub Actions.**
 
-A project created and curated by [christosgalano](https://github.com/christosgalano) & [cyb3rmik3](https://github.com/cyb3rmik3).
-
 ## Table of Contents
 
 - [Introduction](#introduction)
@@ -132,6 +130,10 @@ python .github/scripts/kql_query_executor/main.py \
 ## Contributing
 
 Information about contributing to this project can be found [here](CONTRIBUTING.md).
+
+## Creation & Curation
+
+A project created with love in Greece by [christosgalano](https://github.com/christosgalano) & [cyb3rmik3](https://github.com/cyb3rmik3).
 
 ## License
 
