@@ -134,6 +134,10 @@ python .github/scripts/kql_query_executor/main.py \
 
 Information about contributing to this project can be found [here](CONTRIBUTING.md).
 
+## Creation & Curation
+
+A project created with love in Greece by [christosgalano](https://github.com/christosgalano) & [cyb3rmik3](https://github.com/cyb3rmik3).
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
