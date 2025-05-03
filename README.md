@@ -85,7 +85,7 @@ For detailed information on using this repository, refer to:
 - [Usage Guide](https://github.com/christosgalano/kql-template-repo/wiki/Usage): General usage instructions
 
 > [!NOTE]
-> The `library/device` folder is a sample folder containing example queries. You can create your own folders and queries as needed.
+> The `device` folder under `library` is a sample folder containing example queries. You can create your own folders and queries as needed. All new folder must be created under the `library` directory.
 
 ## Getting Started
 
