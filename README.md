@@ -84,6 +84,9 @@ For detailed information on using this repository, refer to:
 - [Configuration Guide](https://github.com/christosgalano/kql-template-repo/wiki/Configuration): KQL config file format and options
 - [Usage Guide](https://github.com/christosgalano/kql-template-repo/wiki/Usage): General usage instructions
 
+> [!IMPORTANT]
+> The `library/device` folder is a sample folder containing example queries. You can create your own folders and queries as needed.
+
 ## Getting Started
 
 ### 1. Use This Template
